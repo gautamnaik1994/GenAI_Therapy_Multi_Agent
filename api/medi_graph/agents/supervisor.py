@@ -13,7 +13,7 @@ from pydantic import BaseModel
 from typing import List
 
 # from api.langgraph.graph import Route
-from ..types import Route
+from ..types import MetricEnum, Route
 
 from ..llm import llm_model
 from ..utils import extract_json_from_message
@@ -88,11 +88,15 @@ def supervisor_node(state):
 
     if any(word in conceptualization for word in depression_keywords):
         state.route = Route.depression
+        state.diagnosis = ClassificationEnum.depression
+
         print("Depression detected in clinical conceptualization, routing to depression.")
         return state
 
     if any(word in conceptualization for word in anxiety_keywords):
         state.route = Route.anxiety
+        state.diagnosis = ClassificationEnum.anxiety
+
         print("Anxiety detected in clinical conceptualization, routing to anxiety.")
         return state
 
@@ -122,8 +126,7 @@ def supervisor_node(state):
             {"role": "user", "content": prompt}
         ]
     })
-    print("Supervisor response:")
-    print(res)
+
     if res.get("error"):
         print(f"Error in supervisor node: {res['error']}")
         return END
@@ -143,8 +146,10 @@ def supervisor_node(state):
     diagnosis = classification.classification
     if diagnosis == ClassificationEnum.anxiety:
         state.route = Route.anxiety
+        state.metric = MetricEnum.gad_7
     elif diagnosis == ClassificationEnum.depression:
         state.route = Route.depression
+        state.metric = MetricEnum.phq_9
     # elif diagnosis == ClassificationEnum.both:
     #     state.route = Route.anxiety
     else:

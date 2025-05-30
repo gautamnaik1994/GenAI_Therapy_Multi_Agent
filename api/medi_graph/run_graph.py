@@ -12,21 +12,33 @@ def run_langgraph_agent(all_therapy_sessions):
     result = medic_graph.invoke({
         "messages": [],
         "all_therapy_sessions": all_therapy_sessions,
-        "diagnosis": ""
+        "diagnosis": "",
+        "metric": None,
     })
     out = {}
     if isinstance(result, dict) and "output" in result:
         out = json.loads(result["output"].model_dump_json())
+        out["diagnosis"] = result["diagnosis"].value
+        out["metric"] = result["metric"].value
+
     return out
 
 
-def run_langgraph_agent_using_sample_data():
+def run_langgraph_agent_using_sample_data(client_id: str = "client3"):
+
     base_path = Path(__file__).parent / "sample_data"
-    files = [
-        base_path / "client3_session1.txt",
-        base_path / "client3_session2.txt",
-        base_path / "client3_session3.txt",
-    ]
+
+    if client_id == "client3":
+        files = [
+            base_path / f"{client_id}_session1.txt",
+            base_path / f"{client_id}_session2.txt",
+            base_path / f"{client_id}_session3.txt",
+        ]
+    else:
+        files = [
+            base_path / f"{client_id}_session1.txt",
+            base_path / f"{client_id}_session2.txt",
+        ]
 
     all_therapy_sessions = []
 

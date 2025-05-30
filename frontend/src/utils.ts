@@ -1,5 +1,7 @@
 export const response = {
+  diagnosis: 'Anxiety',
   client_id: 'client3',
+  metric: 'GAD-7',
   sessions: [
     {
       therapy_session_number: 1,
@@ -16,7 +18,7 @@ export const response = {
       },
       total_score: 14,
       justification:
-        'The client reports persistent low mood, anhedonia, hypersomnia, low energy, decreased appetite, feelings of hopelessness, some difficulty concentrating, and passive thoughts of not wanting to wake up. These symptoms are present daily and are moderate in intensity, consistent with moderate depression.',
+        "Client reports daily, persistent low mood and anhedonia for 3 months (2s for 'little interest' and 'feeling down'). Hypersomnia (2), fatigue (2), decreased appetite (2), feelings of hopelessness and guilt (2), some difficulty concentrating (1), no psychomotor changes (0), and passive thoughts of not wanting to wake up (1).",
     },
     {
       therapy_session_number: 2,
@@ -25,15 +27,15 @@ export const response = {
         feeling_down: 3,
         trouble_sleeping: 2,
         feeling_tired: 3,
-        poor_appetite: 2,
+        poor_appetite: 3,
         feeling_bad_about_self: 3,
         trouble_concentrating: 2,
         slow_or_fast: 1,
-        thoughts_of_self_harm: 1,
+        thoughts_of_self_harm: 2,
       },
-      total_score: 20,
+      total_score: 22,
       justification:
-        'Symptoms have worsened: profound sadness, anhedonia, hypersomnia, severe lack of motivation, decreased appetite, overwhelming emptiness, slowed cognition, and passive suicidal ideation. These are present all day, every day, and are severe, consistent with severe depression.',
+        "Symptoms have intensified: 'all day, every day' anhedonia and sadness (3s), hypersomnia and trouble getting out of bed (2), severe fatigue (3), eating very little (3), profound hopelessness and self-criticism (3), slowed cognition (2), psychomotor slowing inferred from 'severely slowed' (1), and passive suicidal ideation (2).",
     },
     {
       therapy_session_number: 3,
@@ -50,10 +52,10 @@ export const response = {
       },
       total_score: 3,
       justification:
-        'The client reports significant improvement: only mild low mood and anhedonia, normal sleep and appetite, improved energy, no self-worth or concentration issues, and no suicidal ideation. This is consistent with minimal depressive symptoms and partial remission.',
+        'Significant reduction in symptoms: low mood and anhedonia now intermittent and mild (1s), regular sleep and appetite (0s), improved energy (1), no guilt/hopelessness, no concentration issues, no psychomotor or suicidal symptoms (0s).',
     },
   ],
   progress_summary:
-    'The client initially presented with moderate depression (PHQ-9: 14), worsened to severe depression (PHQ-9: 20), and then showed substantial improvement to minimal symptoms (PHQ-9: 3). The overall trajectory is one of initial deterioration followed by significant recovery.',
+    "The client's PHQ-9 score increased from 14 (moderate depression) in session 1 to 22 (severe depression) in session 2, indicating a significant worsening. By session 3, the score dropped to 3 (minimal symptoms), reflecting substantial clinical improvement and partial remission.",
   progress_status: 'Improving',
 };

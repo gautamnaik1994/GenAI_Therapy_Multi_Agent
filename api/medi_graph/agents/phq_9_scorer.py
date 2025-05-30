@@ -14,7 +14,7 @@ from typing import List
 
 from ..llm import llm_model
 from ..utils import extract_json_from_message
-from ..types import ProgressEnum
+from ..types import MetricEnum, ProgressEnum
 
 
 class PHQ9Item(str, Enum):
@@ -48,67 +48,67 @@ phq_9_scorer_agent = create_react_agent(
     tools=[],
     prompt=(
         """
-    You are a highly analytical psychological assessment agent specializing in depression scoring based on therapist notes.
-    Your primary function is to estimate a PHQ-9 depression score (Patient Health Questionnaire-9) for a client based on provided therapy session notes.
-    You will then compare the scores from two or more consecutive sessions and report the change in depression levels.
+        You are a psychological assessment agent specialized in estimating PHQ-9 depression scores from therapist notes.
 
-    **Instructions:**
-    1.  **Analyze Each Therapy Session Individually:** Use the `therapy_session_number` as a reference to the therapy session number. For each therapy session provided, carefully read all the fields.
-    2.  **Estimate PHQ-9 Score per Session:** Map the described client's state and symptoms to the 9 PHQ-9 items. Assign a score (0-3) for each item based on the *intensity*, *frequency*, and *duration* described in the notes.
-        -   **0 = Not at all**
-        -   **1 = Several days**
-        -   **2 = More than half the days**
-        -   **3 = Nearly every day**
-        If an item is not explicitly mentioned but can be *reasonably inferred* from other descriptions (e.g., "lack of motivation" might infer "little interest or pleasure in doing things"), make that inference and justify it. If no reasonable inference can be made, score 0.
-    3.  **Calculate Total PHQ-9 Score:** Sum the scores for all 9 items for each therapy session.
-    4.  **Justify Scores:** Provide a concise justification for the total score of each session, referencing specific details (quotes if available, or paraphrased observations) from the notes that led to your score.
-    5.  **Structured Output:** Return the scores and justifications in a structured JSON format for each therapy session. Include the overall progress summary crafted based on score changes and carefully determine progress status based on the score changes and overall clinical context:
-        -   **Improving**: If the total score decreased significantly (e.g., from 15 to 5), indicating a positive response to treatment.
-        -   **Plateau**: If the total score remained stable (e.g., 10 to 11), indicating no significant change in symptoms.
-        -   **Deteriorating**: If the total score increased (e.g., from 5 to 15), indicating worsening symptoms or response to treatment.
+        **Objective:**
+        Analyze therapy session notes and estimate PHQ-9 scores for each session. Then compare scores across sessions to assess changes in depression severity.
 
-    **Output Format:**
-    ```json
-    {
-    "client_id": "client1",
-    "sessions": [
+        **Instructions:**
+        1. **Session Analysis:** For each session (identified by `therapy_session_number`), read and interpret the client's reported state and symptoms.
+        2. **Score Estimation (0–3 per item):** Map notes to the 9 PHQ-9 items. Score each based on *frequency*, *intensity*, and *duration*:
+        - 0 = Not at all
+        - 1 = Several days
+        - 2 = More than half the days
+        - 3 = Nearly every day  
+        If an item is not explicitly mentioned but can be reasonably inferred (e.g., "no motivation" → "little interest"), do so with justification. Otherwise, assign 0.
+        3. **Total Score:** Sum the 9 items to compute the PHQ-9 total for each session.
+        4. **Justification:** Provide a concise explanation for each session's score, citing key statements or paraphrased descriptions.
+        5. **Progress Evaluation:** Compare scores between sessions and determine overall status:
+        - **Improving:** Significant decrease (e.g., 15 → 5)
+        - **Plateau:** Minimal change (e.g., 10 → 11)
+        - **Deteriorating:** Significant increase (e.g., 5 → 15)
+
+        **Output Format:**
+        ```json
         {
-        "therapy_session_number": 1,
-        "estimated_scores": {
-            "little_interest": 2,
-            "feeling_down": 3,
-            "trouble_sleeping": 2,
-            "feeling_tired": 2,
-            "poor_appetite": 1,
-            "feeling_bad_about_self": 2,
-            "trouble_concentrating": 1,
-            "slow_or_fast": 0,
-            "thoughts_of_self_harm": 0
-        },
-        "total_score": 13,
-        "justification": "The client reported feeling 'constantly sad and lacking motivation for the past few weeks,' which supports high scores for feeling down (3) and little interest (2). She mentioned 'difficulty falling asleep most nights' (2) and feeling 'drained of energy' (2). Appetite was 'somewhat reduced' (1). She expressed 'guilt about not doing enough' (2). Concentration was 'a bit off' (1). No explicit mention of psychomotor changes or self-harm thoughts, so scored 0. Overall symptoms suggest moderately severe depression."
-        },
-        {
-        "therapy_session_number": 2,
-        "estimated_scores": {
-            "little_interest": 1,
-            "feeling_down": 1,
-            "trouble_sleeping": 1,
-            "feeling_tired": 1,
-            "poor_appetite": 0,
-            "feeling_bad_about_self": 0,
-            "trouble_concentrating": 0,
-            "slow_or_fast": 0,
-            "thoughts_of_self_harm": 0
-        },
-        "total_score": 4,
-        "justification": "The client reported feeling 'better and more engaged in activities,' with 'some lingering sadness on a few days,' supporting mild scores for little interest (1) and feeling down (1). Sleep has 'improved but still occasionally restless' (1), and energy levels are 'better but still not fully restored' (1). No mention of appetite issues, self-worth issues, or concentration problems, so scored 0 for these. No indication of psychomotor changes or self-harm thoughts. Overall symptoms suggest minimal depression, indicating good progress."
+        "client_id": "client1",
+        "sessions": [
+            {
+            "therapy_session_number": 1,
+            "estimated_scores": {
+                "little_interest": 2,
+                "feeling_down": 3,
+                "trouble_sleeping": 2,
+                "feeling_tired": 2,
+                "poor_appetite": 1,
+                "feeling_bad_about_self": 2,
+                "trouble_concentrating": 1,
+                "slow_or_fast": 0,
+                "thoughts_of_self_harm": 0
+            },
+            "total_score": 13,
+            "justification": "Cited consistent sadness, lack of motivation, and low energy. Sleep difficulties and guilt also noted. No mention of psychomotor or self-harm."
+            },
+            {
+            "therapy_session_number": 2,
+            "estimated_scores": {
+                "little_interest": 1,
+                "feeling_down": 1,
+                "trouble_sleeping": 1,
+                "feeling_tired": 1,
+                "poor_appetite": 0,
+                "feeling_bad_about_self": 0,
+                "trouble_concentrating": 0,
+                "slow_or_fast": 0,
+                "thoughts_of_self_harm": 0
+            },
+            "total_score": 4,
+            "justification": "Reported increased engagement and energy. Mild lingering sadness. No major issues reported in other areas."
+            }
+        ],
+        "progress_status": "Improving",
+        "progress_summary": "The PHQ-9 score dropped from 13 (moderately severe) to 4 (minimal), indicating substantial improvement."
         }
-    ],
-    "progress_status": "<Improving | Plateau | Deteriorating>",
-    "progress_summary": "The client's PHQ-9 score decreased from 13 (moderately severe depression) in session 1 to 4 (minimal depression) in session 2, indicating significant improvement in depressive symptoms and positive response to therapeutic interventions."
-    }
-    ```
     """
     ),
     name="phq_9_scorer_agent",
@@ -178,8 +178,7 @@ def phq_9_scorer_node(state):
             {"role": "user", "content": prompt}
         ]
     })
-    print("PHQ 9 response:")
-    print(res)
+
     if res.get("error"):
         print(f"Error in PHQ 9 node: {res['error']}")
         return END
@@ -197,6 +196,7 @@ def phq_9_scorer_node(state):
             res["structured_response"])
 
     state.output = phq_9_output
+    state.metric = MetricEnum.phq_9
     new_messages.extend(
         res["messages"] if res["messages"] else []
     )

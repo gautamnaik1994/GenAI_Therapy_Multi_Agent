@@ -29,7 +29,7 @@ const SymptomTrendHeatmap = ({ sessions }) => {
           <Bar
             key={symptom}
             dataKey={symptom}
-            fill={`hsl(${idx * 30}, 70%, 50%)`}
+            fill={`hsl(${idx * 30}, 50%, 50%)`}
           />
         ))}
       </BarChart>

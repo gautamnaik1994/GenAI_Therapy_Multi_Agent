@@ -6,6 +6,7 @@ import {
   CartesianGrid,
   Tooltip,
   Legend,
+  ResponsiveContainer,
 } from 'recharts';
 
 const TrendChart = ({ sessions, metric }) => {
@@ -15,21 +16,23 @@ const TrendChart = ({ sessions, metric }) => {
   }));
 
   return (
-    <div className='mb-4'>
-      <h5>Total {metric} Score Over Sessions</h5>
-      <LineChart width={600} height={300} data={data}>
-        <CartesianGrid strokeDasharray='3 3' />
-        <XAxis dataKey='session' />
-        <YAxis domain={[0, 27]} />
-        <Tooltip />
-        <Legend />
-        <Line
-          type='monotone'
-          dataKey='score'
-          stroke='#dc3545'
-          activeDot={{ r: 8 }}
-        />
-      </LineChart>
+    <div className='trend-chart'>
+      <h4>Total {metric} Score Over Sessions</h4>
+      <ResponsiveContainer width='100%' height={300}>
+        <LineChart data={data}>
+          <CartesianGrid strokeDasharray='3 3' />
+          <XAxis dataKey='session' />
+          <YAxis domain={[0, 27]} />
+          <Tooltip />
+          <Legend />
+          <Line
+            type='monotone'
+            dataKey='score'
+            stroke='#dc3545'
+            activeDot={{ r: 8 }}
+          />
+        </LineChart>
+      </ResponsiveContainer>
     </div>
   );
 };

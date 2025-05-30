@@ -58,6 +58,21 @@ nav {
   }
 }
 
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  margin: 0;
+}
+
+p {
+  margin-top: 0;
+}
+
 .container {
   width: 100%;
   margin: 0 auto;
@@ -69,8 +84,8 @@ nav {
 
 button {
   position: relative;
-  padding: 12px 20px;
-  border-radius: 8px;
+  padding: 8px 20px;
+  border-radius: 4px;
   border: none;
   font-family: inherit;
   font-size: inherit;
@@ -78,10 +93,15 @@ button {
   background-color: var(--primary);
   color: white;
   font-weight: 500;
+  cursor: pointer;
+
+  &:hover {
+    filter: brightness(0.9);
+  }
 }
 
 input[type='file'] {
-  border: 1px solid #333;
+  border: 1px solid #ddd;
   border-radius: 4px;
 }
 
@@ -117,5 +137,63 @@ input[type='file'] {
   }
   &.bg-orange {
     background-color: var(--orange);
+  }
+}
+
+.session-files-container {
+  padding: 15px;
+  box-shadow: 3px 3px 6px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  background-color: white;
+  margin-bottom: 20px;
+  margin-top: 2rem;
+
+  @include desktop {
+    display: flex;
+    gap: 50px;
+    .right {
+      border-left: 1px solid #ddd;
+      padding-left: 20px;
+    }
+  }
+  .sample-holder {
+    button + button {
+      margin-left: 10px;
+    }
+  }
+}
+
+.trend-chart {
+  margin-top: 25px;
+  h4 {
+    margin-bottom: 5px;
+  }
+}
+
+.client-header {
+  h1 {
+    font-weight: 300;
+    small {
+      color: grey;
+    }
+  }
+  @include desktop {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    .right {
+      border: 1px solid #ddd;
+      padding: 20px;
+      border-radius: 8px;
+      text-align: center;
+      h4 {
+        white-space: nowrap;
+      }
+      .score {
+        font-size: 45px;
+        font-weight: 500;
+        color: var(--primary);
+      }
+    }
   }
 }

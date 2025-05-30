@@ -11,3 +11,8 @@ class ProgressEnum(str, Enum):
     improving = "Improving"
     plateau = "Plateau"
     deteriorating = "Deteriorating"
+
+
+class MetricEnum(str, Enum):
+    gad_7 = "GAD-7"
+    phq_9 = "PHQ-9"

@@ -3,7 +3,7 @@ import Navbar from './components/Navbar';
 import FileUpload from './components/FileUpload';
 import type { ApiResponse } from './types';
 import { response } from './utils';
-import PHQ9 from './components/PHQ9';
+import PHQ9 from './components/TherapySummary';
 
 function App() {
   const [data, setData] = useState<ApiResponse | null>(null);

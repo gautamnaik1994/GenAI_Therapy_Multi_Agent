@@ -57,7 +57,6 @@ async def analyze_sessions(request: Request, files: List[UploadFile] = File(...)
         session_data["client_id"] = client_id
         session_data["therapy_session_number"] = session_number
         all_therapy_sessions.append(session_data)
-        # order by therapy_session_number
     print(f"Total therapy sessions received: {len(all_therapy_sessions)}")
     all_therapy_sessions.sort(key=lambda x: x["therapy_session_number"])
 
@@ -68,11 +67,11 @@ async def analyze_sessions(request: Request, files: List[UploadFile] = File(...)
     return JSONResponse(content=result)
 
 
-@app.get("/analyze-sample-data/")
+@app.get("/analyze-sample-data/{client_id}")
 @limiter.limit("60/minute")
-async def analyze_sample_data(request: Request):
+async def analyze_sample_data(request: Request, client_id: str):
     """
     Endpoint to run the agent using sample data.
     """
-    result = run_langgraph_agent_using_sample_data()
+    result = run_langgraph_agent_using_sample_data(client_id=client_id)
     return JSONResponse(content=result)
