@@ -1,0 +1,121 @@
+:root {
+  font-family: 'Inter', system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  --primary: #de0d6f;
+  --secondary: #6c757d;
+  --success: #2a8754;
+  --danger: #2a8754;
+  --warning: #f9c10a;
+  --info: #48caf0;
+  --orange: #f76d47;
+  color: #333;
+}
+
+.inter-normal {
+  font-family: 'Inter', sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.inter-medium {
+  font-family: 'Inter', sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 500;
+  font-style: normal;
+}
+
+.inter-bold {
+  font-family: 'Inter', sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 700;
+  font-style: normal;
+}
+
+@mixin desktop {
+  @media only screen and (min-width: 992px) {
+    @content;
+  }
+}
+
+nav {
+  height: 66px;
+  background-color: white;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  display: flex;
+  align-items: center;
+  padding: 0 15px;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  @include desktop {
+    padding: 0 30px;
+  }
+}
+
+.container {
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 15px;
+  @include desktop {
+    width: 1140px;
+  }
+}
+
+button {
+  position: relative;
+  padding: 12px 20px;
+  border-radius: 8px;
+  border: none;
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+  background-color: var(--primary);
+  color: white;
+  font-weight: 500;
+}
+
+input[type='file'] {
+  border: 1px solid #333;
+  border-radius: 4px;
+}
+
+.badge {
+  display: inline-block;
+  padding: 0.35em 0.65em;
+  font-size: 0.75em;
+  font-weight: 700;
+  line-height: 1;
+  color: #fff;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: baseline;
+  border-radius: 0.375rem;
+
+  &.bg-primary {
+    background-color: var(--primary);
+  }
+  &.bg-secondary {
+    background-color: var(--secondary);
+  }
+  &.bg-success {
+    background-color: var(--success);
+  }
+  &.bg-danger {
+    background-color: var(--danger);
+  }
+  &.bg-warning {
+    background-color: var(--warning);
+  }
+  &.bg-info {
+    background-color: var(--info);
+  }
+  &.bg-orange {
+    background-color: var(--orange);
+  }
+}

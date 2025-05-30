@@ -1,43 +1,24 @@
-import './App.css'
-import React, { useEffect, useState } from 'react';
+import { useState } from 'react';
+import Navbar from './components/Navbar';
+import FileUpload from './components/FileUpload';
+import type { ApiResponse } from './types';
+import { response } from './utils';
+import PHQ9 from './components/PHQ9';
 
 function App() {
-
-  // useeffect for fetching data from the API
-
-  const [data, setData] = useState(null);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await fetch(import.meta.env.VITE_API_URL);
-        const result = await response.json();
-        setData(result);
-      } catch (error) {
-        console.error('Error fetching data:', error);
-      }
-    };
-
-    fetchData();
-  }, []);
-
+  const [data, setData] = useState<ApiResponse | null>(null);
 
   return (
     <>
-      <h1>Medic Agent</h1>
-      <p>Welcome to the Medic Agent application!</p>
-      {
-        data ? (
-          <div>
-            <h2>Data from API:</h2>
-            <pre>{JSON.stringify(data, null, 2)}</pre>
-          </div>
-        ) : (
-          <p>Loading data...</p>
-        )
-      }
+      <Navbar />
+      <div className='container'>
+        <FileUpload onSuccess={setData} />
+        {/* {JSON.stringify(response)} */}
+        {data && <PHQ9 data={data} />}
+        <PHQ9 data={response} />
+      </div>
     </>
-  )
+  );
 }
 
-export default App
+export default App;
