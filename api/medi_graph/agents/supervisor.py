@@ -15,7 +15,7 @@ from typing import List
 # from api.langgraph.graph import Route
 from ..types import Route
 
-from ..llm import get_chat_together_llm
+from ..llm import llm_model
 from ..utils import extract_json_from_message
 
 
@@ -34,7 +34,7 @@ class ClassificationResult(BaseModel):
 
 
 supervisor = create_react_agent(
-    model=get_chat_together_llm(),
+    model=llm_model,
     tools=[],
     prompt=(
         """

@@ -8,12 +8,10 @@ import {
   Legend,
 } from 'recharts';
 
-const PHQ9TrendChart = ({ sessions, metric }) => {
+const TrendChart = ({ sessions, metric }) => {
   const data = sessions.map((session) => ({
     session: `Session ${session.therapy_session_number}`,
-    // score: session.total_phq9_score
-    score:
-      metric === 'PHQ-9' ? session.total_phq9_score : session.total_gad7_score,
+    score: session.total_score,
   }));
 
   return (
@@ -36,4 +34,4 @@ const PHQ9TrendChart = ({ sessions, metric }) => {
   );
 };
 
-export default PHQ9TrendChart;
+export default TrendChart;

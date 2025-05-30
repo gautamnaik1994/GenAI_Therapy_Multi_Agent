@@ -12,8 +12,9 @@ from langgraph.prebuilt import (
 from pydantic import BaseModel
 from typing import List
 
-from ..llm import get_chat_together_llm
+from ..llm import llm_model
 from ..utils import extract_json_from_message
+from ..types import ProgressEnum
 
 
 class PHQ9Item(str, Enum):
@@ -30,8 +31,8 @@ class PHQ9Item(str, Enum):
 
 class TherapySessionPHQ9(BaseModel):
     therapy_session_number: int
-    estimated_phq9_scores: Dict[PHQ9Item, int]
-    total_phq9_score: int
+    estimated_scores: Dict[PHQ9Item, int]
+    total_score: int
     justification: str
 
 
@@ -39,10 +40,11 @@ class PHQ9AgentOutput(BaseModel):
     client_id: str
     sessions: List[TherapySessionPHQ9]
     progress_summary: str
+    progress_status: ProgressEnum
 
 
 phq_9_scorer_agent = create_react_agent(
-    model=get_chat_together_llm(),
+    model=llm_model,
     tools=[],
     prompt=(
         """
@@ -60,7 +62,10 @@ phq_9_scorer_agent = create_react_agent(
         If an item is not explicitly mentioned but can be *reasonably inferred* from other descriptions (e.g., "lack of motivation" might infer "little interest or pleasure in doing things"), make that inference and justify it. If no reasonable inference can be made, score 0.
     3.  **Calculate Total PHQ-9 Score:** Sum the scores for all 9 items for each therapy session.
     4.  **Justify Scores:** Provide a concise justification for the total score of each session, referencing specific details (quotes if available, or paraphrased observations) from the notes that led to your score.
-    5.  **Structured Output:** Return the scores and justifications in a structured JSON format for each therapy session and include the overall progress based on the score changes.
+    5.  **Structured Output:** Return the scores and justifications in a structured JSON format for each therapy session. Include the overall progress summary crafted based on score changes and carefully determine progress status based on the score changes and overall clinical context:
+        -   **Improving**: If the total score decreased significantly (e.g., from 15 to 5), indicating a positive response to treatment.
+        -   **Plateau**: If the total score remained stable (e.g., 10 to 11), indicating no significant change in symptoms.
+        -   **Deteriorating**: If the total score increased (e.g., from 5 to 15), indicating worsening symptoms or response to treatment.
 
     **Output Format:**
     ```json
@@ -69,7 +74,7 @@ phq_9_scorer_agent = create_react_agent(
     "sessions": [
         {
         "therapy_session_number": 1,
-        "estimated_phq9_scores": {
+        "estimated_scores": {
             "little_interest": 2,
             "feeling_down": 3,
             "trouble_sleeping": 2,
@@ -80,12 +85,12 @@ phq_9_scorer_agent = create_react_agent(
             "slow_or_fast": 0,
             "thoughts_of_self_harm": 0
         },
-        "total_phq9_score": 13,
+        "total_score": 13,
         "justification": "The client reported feeling 'constantly sad and lacking motivation for the past few weeks,' which supports high scores for feeling down (3) and little interest (2). She mentioned 'difficulty falling asleep most nights' (2) and feeling 'drained of energy' (2). Appetite was 'somewhat reduced' (1). She expressed 'guilt about not doing enough' (2). Concentration was 'a bit off' (1). No explicit mention of psychomotor changes or self-harm thoughts, so scored 0. Overall symptoms suggest moderately severe depression."
         },
         {
         "therapy_session_number": 2,
-        "estimated_phq9_scores": {
+        "estimated_scores": {
             "little_interest": 1,
             "feeling_down": 1,
             "trouble_sleeping": 1,
@@ -96,10 +101,11 @@ phq_9_scorer_agent = create_react_agent(
             "slow_or_fast": 0,
             "thoughts_of_self_harm": 0
         },
-        "total_phq9_score": 4,
+        "total_score": 4,
         "justification": "The client reported feeling 'better and more engaged in activities,' with 'some lingering sadness on a few days,' supporting mild scores for little interest (1) and feeling down (1). Sleep has 'improved but still occasionally restless' (1), and energy levels are 'better but still not fully restored' (1). No mention of appetite issues, self-worth issues, or concentration problems, so scored 0 for these. No indication of psychomotor changes or self-harm thoughts. Overall symptoms suggest minimal depression, indicating good progress."
         }
     ],
+    "progress_status": "<Improving | Plateau | Deteriorating>",
     "progress_summary": "The client's PHQ-9 score decreased from 13 (moderately severe depression) in session 1 to 4 (minimal depression) in session 2, indicating significant improvement in depressive symptoms and positive response to therapeutic interventions."
     }
     ```

@@ -10,10 +10,10 @@ import {
 } from 'recharts';
 
 const SymptomTrendHeatmap = ({ sessions }) => {
-  const symptomKeys = Object.keys(sessions[0].estimated_phq9_scores);
+  const symptomKeys = Object.keys(sessions[0].estimated_scores);
   const data = sessions.map((session) => ({
     session: `S${session.therapy_session_number}`,
-    ...session.estimated_phq9_scores,
+    ...session.estimated_scores,
   }));
 
   return (

@@ -1,4 +1,3 @@
-import React from 'react';
 import Badge from './Badge';
 
 const getSeverity = (score) => {
@@ -8,13 +7,13 @@ const getSeverity = (score) => {
   return <Badge variant='danger'>Severe</Badge>;
 };
 
-const SessionDetailCard = ({ session }) => (
+const SessionDetailCard = ({ session, metric }) => (
   <div>
     <div>
       <h5>Session {session.therapy_session_number}</h5>
       <h6 className='mb-2 text-muted'>
-        Total PHQ-9 Score: {session.total_phq9_score}{' '}
-        {getSeverity(session.total_phq9_score)}
+        Total {metric} Score: {session.total_score}{' '}
+        {getSeverity(session.total_score)}
       </h6>
       <p>{session.justification}</p>
     </div>

@@ -45,3 +45,6 @@ def get_openai_llm():
         api_key=os.getenv("OPENAI_API_KEY"),
         verbose=False,
     )
+
+
+llm_model = get_openai_llm()
