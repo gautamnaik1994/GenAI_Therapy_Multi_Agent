@@ -7,7 +7,20 @@ import {
   CartesianGrid,
   Tooltip,
   Legend,
+  ResponsiveContainer,
 } from 'recharts';
+
+const pastelColors = [
+  '#6FA8DC',
+  '#E06666',
+  '#76C7A3',
+  '#F6B26B',
+  '#93C47D',
+  '#8E7CC3',
+  '#FFD966',
+  '#6D9EEB',
+  '#C27BA0',
+];
 
 const SymptomTrendHeatmap = ({ sessions }) => {
   const symptomKeys = Object.keys(sessions[0].estimated_scores);
@@ -17,22 +30,24 @@ const SymptomTrendHeatmap = ({ sessions }) => {
   }));
 
   return (
-    <div className='mb-4'>
-      <h5>Symptom Trends Over Sessions</h5>
-      <BarChart width={800} height={400} data={data}>
-        <CartesianGrid strokeDasharray='3 3' />
-        <XAxis dataKey='session' />
-        <YAxis allowDecimals={false} />
-        <Tooltip />
-        <Legend />
-        {symptomKeys.map((symptom, idx) => (
-          <Bar
-            key={symptom}
-            dataKey={symptom}
-            fill={`hsl(${idx * 30}, 50%, 50%)`}
-          />
-        ))}
-      </BarChart>
+    <div className='trend-chart'>
+      <h3>Symptom Trend Over Sessions</h3>
+      <ResponsiveContainer width='100%' height={400}>
+        <BarChart data={data}>
+          <CartesianGrid strokeDasharray='3 3' />
+          <XAxis dataKey='session' />
+          <YAxis allowDecimals={false} domain={[0, 3]} />
+          <Tooltip />
+          <Legend />
+          {symptomKeys.map((symptom, idx) => (
+            <Bar
+              key={symptom}
+              dataKey={symptom}
+              fill={pastelColors[idx % pastelColors.length]}
+            />
+          ))}
+        </BarChart>
+      </ResponsiveContainer>
     </div>
   );
 };

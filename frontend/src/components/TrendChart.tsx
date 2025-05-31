@@ -17,7 +17,7 @@ const TrendChart = ({ sessions, metric }) => {
 
   return (
     <div className='trend-chart'>
-      <h4>Total {metric} Score Over Sessions</h4>
+      <h3>Total {metric} Score Over Sessions</h3>
       <ResponsiveContainer width='100%' height={300}>
         <LineChart data={data}>
           <CartesianGrid strokeDasharray='3 3' />

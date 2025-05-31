@@ -15,7 +15,7 @@ function App() {
         <FileUpload onSuccess={setData} />
         {/* {JSON.stringify(response)} */}
         {data && <PHQ9 data={data} />}
-        <PHQ9 data={response} />
+        {/* <PHQ9 data={response} /> */}
       </div>
     </>
   );

@@ -9,11 +9,15 @@
   --primary: #de0d6f;
   --secondary: #6c757d;
   --success: #2a8754;
-  --danger: #2a8754;
+  --danger: #f44336;
   --warning: #f9c10a;
   --info: #48caf0;
   --orange: #f76d47;
   color: #333;
+}
+
+body {
+  background-color: #fef5fa;
 }
 
 .inter-normal {
@@ -140,8 +144,26 @@ input[type='file'] {
   }
 }
 
+.improving {
+  color: var(--success);
+}
+.plateau {
+  color: var(--warning);
+}
+.deteriorating {
+  color: var(--danger);
+}
+
+.card {
+  padding: 20px;
+  box-shadow: 3px 3px 6px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  background-color: white;
+  margin-bottom: 30px;
+}
+
 .session-files-container {
-  padding: 15px;
+  padding: 20px;
   box-shadow: 3px 3px 6px rgba(0, 0, 0, 0.1);
   border-radius: 8px;
   background-color: white;
@@ -164,36 +186,90 @@ input[type='file'] {
 }
 
 .trend-chart {
-  margin-top: 25px;
-  h4 {
-    margin-bottom: 5px;
+  margin-bottom: 25px;
+  h3 {
+    margin-bottom: 15px;
   }
 }
 
+label {
+  font-weight: 600;
+}
+
 .client-header {
+  margin-top: 30px;
   h1 {
     font-weight: 300;
-    small {
-      color: grey;
-    }
+    text-transform: uppercase;
+    margin-bottom: 5px;
   }
   @include desktop {
     display: flex;
-    align-items: center;
     gap: 30px;
-    .right {
+    align-items: flex-start;
+    .score-box {
       border: 1px solid #ddd;
       padding: 20px;
       border-radius: 8px;
       text-align: center;
+      display: grid;
+      place-content: center;
+      min-height: 200px;
       h4 {
         white-space: nowrap;
       }
       .score {
-        font-size: 45px;
+        font-size: 50px;
         font-weight: 500;
         color: var(--primary);
       }
     }
   }
+}
+
+.status-box {
+  font-size: 18px;
+  label {
+    font-size: 14px;
+  }
+  .status {
+    line-height: 1;
+  }
+  font-weight: 500;
+}
+
+.summary {
+  margin-top: 10px;
+}
+
+.session-details-title {
+  margin-bottom: 20px;
+}
+
+.session-details-inner {
+  margin-top: 10px;
+  display: flex;
+  gap: 20px;
+  .left {
+    flex: 1;
+  }
+
+  .symptom-scores {
+    flex: 1;
+  }
+}
+
+hr {
+  margin: 20px 0;
+  border: none;
+  border-top: 1px solid #ddd;
+}
+
+.text-primary {
+  color: var(--primary);
+}
+
+.loading-indicator {
+  text-align: center;
+  font-weight: 700;
 }

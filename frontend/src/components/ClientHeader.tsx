@@ -1,24 +1,31 @@
-import Badge from './Badge';
-
 const ClientHeader = ({ data }) => (
-  <div className='client-header'>
+  <div className='client-header card'>
     <div className='left'>
-      <h1>
-        <small>Client ID:</small>
-        {data.client_id}
-      </h1>
-      <div>Diagnosis: {data.diagnosis}</div>
-      <div>Total {data.sessions.length} Sessions</div>
+      <h1>{data.client_id}</h1>
       <div>
-        <h4>Summary</h4> {data.progress_summary}
+        {' '}
+        <label>Diagnosis:</label> {data.diagnosis}
+      </div>
+      <div>
+        {' '}
+        <label>Sessions Count:</label> {data.sessions.length} Sessions
+      </div>
+      <div className='summary'>
+        <h4>Summary</h4>
+        <div>{data.progress_summary}</div>
       </div>
     </div>
-    <div className='right'>
+    <div className='score-box'>
       <h4>Last {data.metric} Score</h4>
       <div className='score'>
         {data.sessions[data.sessions.length - 1].total_score}
       </div>
-      <div>Status: {data.progress_status}</div>
+      <div className='status-box'>
+        <label>Status</label>
+        <div className={` status ${data.progress_status.toLowerCase()}`}>
+          {data.progress_status}
+        </div>
+      </div>
     </div>
   </div>
 );

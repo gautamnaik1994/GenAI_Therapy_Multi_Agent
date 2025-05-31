@@ -7,16 +7,19 @@ function TherapySummary({ data }) {
   return (
     <>
       <ClientHeader data={data} />
-      <TrendChart metric={data.metric} sessions={data.sessions} />
-      <SymptomTrendHeatmap sessions={data.sessions} />
-      <h4 className='mt-4'>Session Details</h4>
-      {data.sessions.map((session) => (
-        <SessionDetailCard
-          metric={data.metric}
-          key={session.therapy_session_number}
-          session={session}
-        />
-      ))}
+      <div className='card'>
+        <TrendChart metric={data.metric} sessions={data.sessions} />
+        <SymptomTrendHeatmap sessions={data.sessions} />
+      </div>
+      <div className='card'>
+        <h2 className='session-details-title'>Detailed Session Information</h2>
+        {data.sessions.map((session) => (
+          <div key={session.therapy_session_number}>
+            <SessionDetailCard metric={data.metric} session={session} />
+            {session.therapy_session_number !== data.sessions.length && <hr />}
+          </div>
+        ))}
+      </div>
     </>
   );
 }
