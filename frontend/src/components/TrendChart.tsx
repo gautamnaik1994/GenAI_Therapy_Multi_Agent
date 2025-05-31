@@ -9,7 +9,13 @@ import {
   ResponsiveContainer,
 } from 'recharts';
 
-const TrendChart = ({ sessions, metric }) => {
+const TrendChart = ({
+  sessions,
+  metric,
+}: {
+  sessions: any[];
+  metric: string;
+}) => {
   const data = sessions.map((session) => ({
     session: `Session ${session.therapy_session_number}`,
     score: session.total_score,

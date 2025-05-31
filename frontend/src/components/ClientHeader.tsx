@@ -1,4 +1,4 @@
-const ClientHeader = ({ data }) => (
+const ClientHeader = ({ data }: { data: any }) => (
   <div className='client-header card'>
     <div className='left'>
       <h1>{data.client_id}</h1>

@@ -1,4 +1,3 @@
-import React from 'react';
 import {
   BarChart,
   Bar,
@@ -22,9 +21,9 @@ const pastelColors = [
   '#C27BA0',
 ];
 
-const SymptomTrendHeatmap = ({ sessions }) => {
+const SymptomTrendHeatmap = ({ sessions }: { sessions: any }) => {
   const symptomKeys = Object.keys(sessions[0].estimated_scores);
-  const data = sessions.map((session) => ({
+  const data = sessions.map((session: any) => ({
     session: `S${session.therapy_session_number}`,
     ...session.estimated_scores,
   }));

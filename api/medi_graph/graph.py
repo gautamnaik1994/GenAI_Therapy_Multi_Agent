@@ -13,6 +13,7 @@ from langgraph.graph import (
 )
 from langgraph.graph.message import add_messages
 
+
 from pydantic import BaseModel
 from typing import Annotated, List
 from langchain_core.messages.utils import AnyMessage
@@ -24,11 +25,6 @@ from .agents.supervisor import supervisor_node
 from .agents.gad_7_scorer import GAD7AgentOutput, gad_7_scorer_node
 from .agents.phq_9_scorer import PHQ9AgentOutput, phq_9_scorer_node
 from .types import Route, MetricEnum
-
-# class Route(str, Enum):
-#     depression = "depression"
-#     anxiety = "anxiety"
-#     neither = "end"
 
 
 class AppState(BaseModel):

@@ -109,7 +109,6 @@ def supervisor_node(state):
         "hopelessness": data["Risk Assessment"]["Hopelessness"],
         "suicidal_thoughts": data["Risk Assessment"]["Suicidal Thoughts or Attempts"],
         "sleep": data["Biological Factors"]["Sleep"],
-        # fixed key here
         "diagnosis": data["Clinical Assessment"]["Diagnosiss"],
         "client_quotes": {
             "chief_complaint_quote": data["Presentation"].get("Quote (Chief Complaint)", ""),

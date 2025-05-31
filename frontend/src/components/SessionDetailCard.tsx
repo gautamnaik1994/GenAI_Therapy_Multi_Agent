@@ -8,14 +8,20 @@ import {
   ResponsiveContainer,
 } from 'recharts';
 
-const getSeverity = (score) => {
+const getSeverity = (score: number) => {
   if (score <= 4) return <Badge variant='success'>Minimal</Badge>;
   if (score <= 9) return <Badge variant='warning'>Mild</Badge>;
   if (score <= 14) return <Badge variant='orange'>Moderate</Badge>;
   return <Badge variant='danger'>Severe</Badge>;
 };
 
-const SessionDetailCard = ({ session, metric }) => (
+const SessionDetailCard = ({
+  session,
+  metric,
+}: {
+  session: any;
+  metric: string;
+}) => (
   <>
     <h3>Session {session.therapy_session_number}</h3>
     <div className='session-details-inner'>

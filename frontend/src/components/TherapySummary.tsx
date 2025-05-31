@@ -3,7 +3,7 @@ import SessionDetailCard from './SessionDetailCard';
 import SymptomTrendHeatmap from './SymptomTrendHeatmap';
 import TrendChart from './TrendChart';
 
-function TherapySummary({ data }) {
+function TherapySummary({ data }: { data: any }) {
   return (
     <>
       <ClientHeader data={data} />
@@ -13,7 +13,7 @@ function TherapySummary({ data }) {
       </div>
       <div className='card'>
         <h2 className='session-details-title'>Detailed Session Information</h2>
-        {data.sessions.map((session) => (
+        {data.sessions.map((session: any) => (
           <div key={session.therapy_session_number}>
             <SessionDetailCard metric={data.metric} session={session} />
             {session.therapy_session_number !== data.sessions.length && <hr />}

@@ -2,7 +2,7 @@ import { useState } from 'react';
 import Navbar from './components/Navbar';
 import FileUpload from './components/FileUpload';
 import type { ApiResponse } from './types';
-import { response } from './utils';
+// import { response } from './utils';
 import PHQ9 from './components/TherapySummary';
 
 function App() {

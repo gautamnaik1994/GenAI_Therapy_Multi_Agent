@@ -1,15 +1,21 @@
+from langchain_community.cache import InMemoryCache
+from langchain_community.cache import SQLiteCache
+from langchain.globals import set_llm_cache
+from langchain_openai import ChatOpenAI
+from langchain_together import ChatTogether
 import os
 
 from dotenv import load_dotenv
 
 
 # from langchain_google_genai import ChatGoogleGenerativeAI
-from langchain_together import ChatTogether
-from langchain_openai import ChatOpenAI
+# set_llm_cache(InMemoryCache())
 # from langchain_groq import ChatGroq
 
 
 load_dotenv()
+
+# set_llm_cache(SQLiteCache(database_path=".langchain.db"))
 
 
 # def get_google_llm():
