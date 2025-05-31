@@ -44,7 +44,6 @@ def run_langgraph_agent_using_sample_data(client_id: str = "client3"):
 
     for file_path in files:
         with open(file_path, "r") as f:
-            print(f"Reading file: {file_path.resolve()}")
             session_data = json.load(f)
             base = file_path.name
             match = re.match(r'(client\d+)_session(\d+)\.txt$', base)
