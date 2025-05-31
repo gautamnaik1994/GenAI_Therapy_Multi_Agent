@@ -60,6 +60,12 @@ nav {
   @include desktop {
     padding: 0 30px;
   }
+  a {
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--primary);
+    text-decoration: none;
+  }
 }
 
 h1,

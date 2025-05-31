@@ -1,6 +1,11 @@
-fastapi
-uvicorn
-pydantic
-langchain
-langgraph
-slowapi
+fastapi==0.115.12
+uvicorn==0.34.2
+pydantic==2.10.3
+langchain==0.3.25
+langchain-core==0.3.63
+langgraph==0.4.7
+slowapi==0.1.9
+dotenv
+langchain-together==0.3.0
+langchain-openai==0.3.18
+python-multipart==0.0.20

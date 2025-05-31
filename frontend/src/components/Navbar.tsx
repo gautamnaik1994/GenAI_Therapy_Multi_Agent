@@ -1,7 +1,7 @@
 function Navbar() {
   return (
     <nav>
-      <a>Medic Agent</a>
+      <a>PsyTrackr</a>
     </nav>
   );
 }
