@@ -50,6 +50,7 @@ Raw LLM outputs are often verbose and inconsistent. To ensure actionable and use
 
 I benchmarked both open-source (Llama 3) and proprietary (OpenAI GPT-4.1) language models. While both delivered reliable results, GPT-4.1 demonstrated superior output quality, consistency, and handling of complex, structured prompts. For development and experimentation, Llama 3 suffices; for production, GPT-4.1 is recommended.  
 For testing the app, I was  provided with sample data of 2 clients, with 2 sessions each. Both clients were suffering from anxiety. However, I wanted to test my app for a patient with depression, so I created a sample session transcript for a patient with depression using GPT. This was to ensure that the app can handle a variety of cases and is not limited to just anxiety assessments.
+Since the LLM outputs numbers, I have also structured the prompt to provide with a justification for the score. This is to ensure that the LLM is not just providing a score, but also reasoning about the symptoms and their severity. This is important for clinical use, as it provides a rationale for the score and helps in understanding the patient's condition better.
 
 Hovever, It is very important to note that that these scores should be vetted by a qualified mental health professional before being used in any clinical setting.
 
