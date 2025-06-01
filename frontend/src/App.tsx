@@ -15,11 +15,7 @@ function App() {
       <div className='container'>
         <FileUpload onSuccess={setData} />
         {/* {JSON.stringify(response)} */}
-        {data && 'sessions' in data ? (
-          <TherapySummary data={data} />
-        ) : (
-          <p>Something is wrong, please try again later.</p>
-        )}
+        {data && 'sessions' in data && <TherapySummary data={data} />}
         <hr />
         <HowItWorks />
       </div>

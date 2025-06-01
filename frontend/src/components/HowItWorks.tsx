@@ -16,7 +16,7 @@ function HowItWorks() {
           </div>
         </li>
         <li>
-          <strong>Send the data to AI Agent </strong>
+          <strong>Data is processed by AI Agent </strong>
           <div>
             Below is the architecture of the AI agent that processes the therapy
             session data and generates insights:
@@ -42,6 +42,21 @@ function HowItWorks() {
                 above in the frontend.
               </li>
             </ol>
+          </div>
+        </li>
+        <li>
+          <strong>Refer Github Readme for more details</strong>
+          <div>
+            You can find more details about the AI agent architecture and
+            research behind this project in the{' '}
+            <a
+              href='https://github.com/gautamnaik1994/PsyTrackr?tab=readme-ov-file#agenticai-medical-assessment-project'
+              target='_blank'
+              rel='noopener noreferrer'
+            >
+              Github Readme
+            </a>
+            .
           </div>
         </li>
       </ul>

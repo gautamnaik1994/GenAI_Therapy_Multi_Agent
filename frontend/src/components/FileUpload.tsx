@@ -150,6 +150,11 @@ function FileUpload({ onSuccess }: FileUploadProps) {
           <p>Processing ...</p>
         </div>
       )}
+      {uploadResult && uploadResult?.error && (
+        <div className='error-message'>
+          <p>{uploadResult.error}</p>
+        </div>
+      )}
     </>
   );
 }
