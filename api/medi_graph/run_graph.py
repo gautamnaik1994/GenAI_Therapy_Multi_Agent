@@ -1,4 +1,3 @@
-
 from .graph import medic_graph
 import sys
 import os
@@ -8,20 +7,21 @@ from pathlib import Path
 
 
 def run_langgraph_agent(all_therapy_sessions):
-
-    result = medic_graph.invoke({
-        "messages": [],
-        "all_therapy_sessions": all_therapy_sessions,
-        "diagnosis": "",
-        "metric": None,
-    })
-    out = {}
-    if isinstance(result, dict) and "output" in result:
-        out = json.loads(result["output"].model_dump_json())
-        out["diagnosis"] = result["diagnosis"].value
-        out["metric"] = result["metric"].value
-
-    return out
+    try:
+        result = medic_graph.invoke({
+            "messages": [],
+            "all_therapy_sessions": all_therapy_sessions,
+            "diagnosis": "",
+            "metric": None,
+        })
+        out = {}
+        if isinstance(result, dict) and "output" in result:
+            out = json.loads(result["output"].model_dump_json())
+            out["diagnosis"] = result["diagnosis"].value
+            out["metric"] = result["metric"].value
+        return out
+    except Exception as e:
+        return {"error": f"Error running langgraph agent: {str(e)}"}
 
 
 def run_langgraph_agent_using_sample_data(client_id: str = "client3"):

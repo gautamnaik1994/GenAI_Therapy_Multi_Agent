@@ -82,8 +82,8 @@ function FileUpload({ onSuccess }: FileUploadProps) {
           <h3>Upload Therapy Session Files</h3>
           <p>
             <small>
-              Note: Upload your therapy session files in client1_session1.txt
-              format.
+              Note: Upload your therapy session files in
+              client[id]_session[count].txt format.
             </small>{' '}
           </p>
           <div>
@@ -94,11 +94,11 @@ function FileUpload({ onSuccess }: FileUploadProps) {
               onChange={handleFileChange}
             />
             <button
+              className='upload-btn'
               onClick={handleUpload}
               disabled={!files || uploading}
-              style={{ marginLeft: '1em' }}
             >
-              {uploading ? 'Uploading...' : 'Upload'}
+              Upload
             </button>
           </div>
 
@@ -124,13 +124,22 @@ function FileUpload({ onSuccess }: FileUploadProps) {
             </small>{' '}
           </p>
           <div className='sample-holder'>
-            <button onClick={() => handleSampleLoad('client1')}>
+            <button
+              disabled={uploading}
+              onClick={() => handleSampleLoad('client1')}
+            >
               Client 1
             </button>
-            <button onClick={() => handleSampleLoad('client2')}>
+            <button
+              disabled={uploading}
+              onClick={() => handleSampleLoad('client2')}
+            >
               Client 2
             </button>
-            <button onClick={() => handleSampleLoad('client3')}>
+            <button
+              disabled={uploading}
+              onClick={() => handleSampleLoad('client3')}
+            >
               Client 3 (Synthetic Data)
             </button>
           </div>

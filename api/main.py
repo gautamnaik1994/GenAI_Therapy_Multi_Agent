@@ -1,22 +1,34 @@
+from fastapi.middleware.cors import CORSMiddleware
+from fastapi import Request
+from slowapi.errors import RateLimitExceeded
+from slowapi.util import get_remote_address
+from slowapi import Limiter
+from medi_graph.run_graph import run_langgraph_agent, run_langgraph_agent_using_sample_data
 from fastapi import FastAPI, UploadFile, File
 from fastapi.responses import JSONResponse
 from typing import List
 import json
 import re
 import os
-from medi_graph.run_graph import run_langgraph_agent, run_langgraph_agent_using_sample_data
-from slowapi import Limiter
-from slowapi.util import get_remote_address
-from slowapi.errors import RateLimitExceeded
-from fastapi import Request
-from fastapi.middleware.cors import CORSMiddleware
+from dotenv import load_dotenv
+load_dotenv()
+
+
+env = os.getenv("ENVIRONMENT", "production")
 
 app = FastAPI()
 
-# Add CORS middleware
+allowed_origins = [
+    "https://psytrackr.netlify.app"
+]
+
+if env == "development":
+    allowed_origins.append("http://localhost:3000")
+    allowed_origins.append("http://127.0.0.1:3000")
+
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["https://psytrackr.netlify.app"],
+    allow_origins=allowed_origins,
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],

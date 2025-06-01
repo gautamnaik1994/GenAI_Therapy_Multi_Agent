@@ -108,11 +108,23 @@ button {
   &:hover {
     filter: brightness(0.9);
   }
+  &:active {
+    filter: brightness(0.8);
+  }
+  &:disabled {
+    background-color: #fbbcd9;
+    cursor: not-allowed;
+  }
 }
 
 input[type='file'] {
   border: 1px solid #ddd;
   border-radius: 4px;
+  margin-bottom: 10px;
+  @include desktop {
+    margin-bottom: 0;
+    margin-right: 10px;
+  }
 }
 
 .badge {
@@ -183,11 +195,14 @@ input[type='file'] {
       border-left: 1px solid #ddd;
       padding-left: 20px;
     }
+    upload-btn {
+      margin-left: 15px;
+    }
   }
   .sample-holder {
-    button + button {
-      margin-left: 10px;
-    }
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
   }
 }
 
@@ -213,22 +228,22 @@ label {
     display: flex;
     gap: 30px;
     align-items: flex-start;
-    .score-box {
-      border: 1px solid #ddd;
-      padding: 20px;
-      border-radius: 8px;
-      text-align: center;
-      display: grid;
-      place-content: center;
-      min-height: 200px;
-      h4 {
-        white-space: nowrap;
-      }
-      .score {
-        font-size: 50px;
-        font-weight: 500;
-        color: var(--primary);
-      }
+  }
+  .score-box {
+    border: 1px solid #ddd;
+    padding: 20px;
+    border-radius: 8px;
+    text-align: center;
+    display: grid;
+    place-content: center;
+    min-height: 200px;
+    h4 {
+      white-space: nowrap;
+    }
+    .score {
+      font-size: 50px;
+      font-weight: 500;
+      color: var(--primary);
     }
   }
 }
@@ -254,8 +269,11 @@ label {
 
 .session-details-inner {
   margin-top: 10px;
-  display: flex;
-  gap: 20px;
+
+  @include desktop {
+    display: flex;
+    gap: 20px;
+  }
   .left {
     flex: 1;
   }
@@ -278,4 +296,26 @@ hr {
 .loading-indicator {
   text-align: center;
   font-weight: 700;
+}
+
+.how-it-works {
+  pre {
+    font-size: 14px;
+    height: 500px;
+    overflow-y: auto;
+    background-color: #f8f9fa;
+    padding: 15px;
+  }
+  ul {
+    padding-left: 15px;
+  }
+  .agent-arch {
+    img {
+      width: 100%;
+      max-width: 600px;
+      height: auto;
+      display: block;
+      margin: 0 auto;
+    }
+  }
 }

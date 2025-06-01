@@ -16,7 +16,7 @@ const ClientHeader = ({ data }: { data: any }) => (
       </div>
     </div>
     <div className='score-box'>
-      <h4>Last {data.metric} Score</h4>
+      <h4>Latest {data.metric} Score</h4>
       <div className='score'>
         {data.sessions[data.sessions.length - 1].total_score}
       </div>

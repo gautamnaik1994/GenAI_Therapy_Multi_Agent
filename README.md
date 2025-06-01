@@ -6,12 +6,25 @@ This project demonstrates an agentic AI system for medical/therapy session analy
 
 ---
 
+## Demo Video
+
+[![video](http://img.youtube.com/vi/-9N9Gt9KL6E/0.jpg)](http://www.youtube.com/watch?v=-9N9Gt9KL6E "Demo Video")
+
+---
+
 ## Architecture
 
 - **Backend (Python):**
   - API layer for serving data and running analysis.
   - Modular agent-based architecture for scoring and supervision.
   - Utilities for parsing, graph-based reasoning, and LLM integration.
+
+- **Agents:**
+  - GAD-7 and PHQ-9 scoring agents for mental health assessments.
+  - Supervisory agent to validate and orchestrate outputs.
+  - Graph-based reasoning for modular, extensible agent interactions.
+
+![Architecture Diagram](img/agents_graph.png)
 
 - **Frontend (TypeScript/React):**
   - Visualizes client data, session trends, and assessment results.
@@ -30,8 +43,6 @@ This project demonstrates an agentic AI system for medical/therapy session analy
 - **`medi_graph/graph.py`**: Core logic for building and traversing agent graphs.
 - **`medi_graph/llm.py`**: Integrates with large language models for advanced reasoning.
 - **`medi_graph/run_graph.py`**: Runs the agent graph on input data.
-- **`medi_graph/types.py`**: Defines shared data types and interfaces.
-- **`medi_graph/utils.py`**: Utility functions for data parsing and processing.
 
 #### Agents (`medi_graph/agents/`)
 
@@ -42,7 +53,6 @@ This project demonstrates an agentic AI system for medical/therapy session analy
 #### Data
 
 - **`sample_data/`**: Example session transcripts for testing.
-- **`docs/`**: Additional documentation, templates, and reference materials.
 
 ---
 
@@ -57,9 +67,9 @@ This project demonstrates an agentic AI system for medical/therapy session analy
 
 ## Functionality
 
-- **Session Parsing:** Reads and processes raw session transcripts.
-- **Assessment Scoring:** Automatically scores GAD-7 and PHQ-9 from session text.
+- **Session Parsing:** Reads and processes session transcripts.
 - **Agentic Reasoning:** Uses a graph of agents (scorers, supervisors) for modular, extensible analysis.
+- **Assessment Scoring:** Automatically scores GAD-7 and PHQ-9 from session text.
 - **Visualization:** Presents client progress and assessment trends in an interactive UI.
 
 ---
@@ -76,5 +86,14 @@ This project demonstrates an agentic AI system for medical/therapy session analy
 
 3. **Data:**  
    - Use sample transcripts in `medi_graph/sample_data/` or `docs/` for testing.
+
+---
+
+## Screenshots
+
+![s1](img/s1.png)
+![s2](img/s2.png)
+![s3](img/s3.png)
+![s4](img/s4.png)
 
 ---

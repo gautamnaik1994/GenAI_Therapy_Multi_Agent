@@ -2,8 +2,9 @@ import { useState } from 'react';
 import Navbar from './components/Navbar';
 import FileUpload from './components/FileUpload';
 import type { ApiResponse } from './types';
-// import { response } from './utils';
-import PHQ9 from './components/TherapySummary';
+// import { response } from './constants/dummyResponse';
+import TherapySummary from './components/TherapySummary';
+import HowItWorks from './components/HowItWorks';
 
 function App() {
   const [data, setData] = useState<ApiResponse | null>(null);
@@ -14,8 +15,13 @@ function App() {
       <div className='container'>
         <FileUpload onSuccess={setData} />
         {/* {JSON.stringify(response)} */}
-        {data && <PHQ9 data={data} />}
-        {/* <PHQ9 data={response} /> */}
+        {data && 'sessions' in data ? (
+          <TherapySummary data={data} />
+        ) : (
+          <p>Something is wrong, please try again later.</p>
+        )}
+        <hr />
+        <HowItWorks />
       </div>
     </>
   );
