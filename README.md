@@ -64,6 +64,12 @@ Hovever, It is very important to note that that these scores should be vetted by
 
 ---
 
+## Scope for improvement
+
+- **Session Count Limitation:** The current implementation has been tested on max 3 session per client. Hovever, to extend this to more sessions, we can save previous session data in a database and retrieve it as needed, rather than passing all session data to the LLM at once.   Also, if multiple session are uploaded in one go, we will have to implement a loop to process batches of sessions, as the LLM context window is limited, And then combine the results for each session along with summarization of text data from all sessions.
+- **Extending Agent Capabilities:** Future work could include additional assessments (e.g., PTSD, OCD) and more complex reasoning agents.
+- **Enhanced Visualization:** Implementing more advanced data visualizations (e.g., heatmaps, trend analysis) to provide deeper insights into client progress.
+
 ## Demo Video
 
 [![video](http://img.youtube.com/vi/-9N9Gt9KL6E/0.jpg)](http://www.youtube.com/watch?v=-9N9Gt9KL6E "Demo Video")
