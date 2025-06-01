@@ -27,6 +27,10 @@ Given limited prior exposure to the mental health domain, I conducted in-depth r
 
 I evaluated two primary approaches: a Retrieval-Augmented Generation (RAG) pipeline versus an agentic reasoning framework. I selected the agentic reasoning paradigm for its modularity, scalability, and ease of extension. This architecture enables seamless integration of new assessments and analytical agents as project requirements evolve.
 
+To achieve fine-grained control over the agents, I developed a custom agentic framework using LangGraph, which offers seamless integration with LLMs and custom logic. While alternatives like CrewAI and LlamaIndex were considered, LangGraph provided greater flexibility and was ultimately better aligned with the project’s requirements.  
+
+For frontend, I didn't choose Streamlit, as I wanted to build a more interactive and visually appealing UI. I opted for a React-based frontend, which allows for greater customization and responsiveness. Another reason was that Streamlit apps sleeps after a certain period of inactivity.
+
 #### Prompt Engineering and NLP Strategy
 
 Initial attempts involved passing entire session transcripts to the LLM for assessment scoring, which proved inefficient due to high token consumption and context dilution. Through iterative refinement, I engineered prompts to focus on transcript sections most relevant to GAD-7 and PHQ-9 criteria. This targeted approach improved both accuracy and computational efficiency.
@@ -48,6 +52,8 @@ I benchmarked both open-source (Llama 3) and proprietary (OpenAI GPT-4.1) langua
 For testing the app, I was  provided with sample data of 2 clients, with 2 sessions each. Both clients were suffering from anxiety. However, I wanted to test my app for a patient with depression, so I created a sample session transcript for a patient with depression using GPT. This was to ensure that the app can handle a variety of cases and is not limited to just anxiety assessments.
 
 Hovever, It is very important to note that that these scores should be vetted by a qualified mental health professional before being used in any clinical setting.
+
+---
 
 ### Challenges and Lessons Learned
 
@@ -88,8 +94,8 @@ Hovever, It is very important to note that that these scores should be vetted by
 
 ## Deployment and Hosting
 
-- **Backend:** : ![Render](https://render.com/) is used for hosting FastAPI endpoints and LangGraph agents.
-- **Frontend:** : ![Netlify](https://www.netlify.com/) is used for hosting the React-based frontend.
+- **Backend:** : [Render](https://render.com/) is used for hosting FastAPI endpoints and LangGraph agents.
+- **Frontend:** : [Netlify](https://www.netlify.com/) is used for hosting the React-based frontend.
 - **LLMs:** : OpenAI's GPT-4.1 api is utilized for lenguage model capabilities, with Llama 3 as a fallback for development.
 
 ## Major Modules
