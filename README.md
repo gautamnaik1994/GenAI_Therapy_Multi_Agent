@@ -1,8 +1,8 @@
-# AgenticAI Medical Assessment Project
+# Therapy Agent
 
 ## Overview
 
-AgenticAI Medical Assessment is an advanced system designed for the analysis of medical and therapy sessions. It processes session transcripts, automatically scores mental health assessments, and visualizes client progress over time. The architecture is modular, featuring a robust Python backend (API and agent logic) and a modern frontend for interactive data visualization. The app is deployed here [https://psytrackr.netlify.app/](https://psytrackr.netlify.app/)
+Therapy Agent is an advanced system designed for the analysis of medical and therapy sessions. It processes session transcripts, automatically scores mental health assessments, and visualizes client progress over time. The architecture is modular, featuring a robust Python backend (API and agent logic) and a modern frontend for interactive data visualization. The app is deployed here
 
 ## Key Features
 
@@ -105,14 +105,7 @@ Hovever, It is very important to note that that these scores should be vetted by
 - **Frontend:** : [Netlify](https://www.netlify.com/) is used for hosting the React-based frontend.
 - **LLMs:** : OpenAI's GPT-4.1 api is utilized for lenguage model capabilities, with Llama 3 as a fallback for development.
 
-## Major Modules
-
-### Backend (`api/` and `medi_graph/`)
-
-- **`api/main.py`**: Entry point for the backend API. Handles requests and orchestrates analysis.
-- **`medi_graph/graph.py`**: Core logic for building and traversing agent graphs.
-- **`medi_graph/llm.py`**: Integrates with large language models for advanced reasoning.
-- **`medi_graph/run_graph.py`**: Runs the agent graph on input data.
+## Modules
 
 #### Agents (`medi_graph/agents/`)
 
@@ -126,30 +119,15 @@ Hovever, It is very important to note that that these scores should be vetted by
 
 ---
 
-### Frontend (`frontend/`)
-
-- **React-based UI** for visualizing:
-  - Client session summaries
-  - Assessment trends (GAD-7, PHQ-9)
-  - Therapy progress and heatmaps
-
----
-
 ## Getting Started
 
 **Prerequisites:**
 
 - Make sure you have api keys for OpenAI or TogetherAI, and set them in the `.env` file in the `api/` directory. A template file is provided as `.env.template`.
 
-1. **Backend:**  
-   - Install Python dependencies from `api/requirements.txt`.
-   - Run the API server via `api/main.py` by executing `uvicorn main:app`.
+-
 
-2. **Frontend:**  
-   - Install dependencies with your preferred package manager (e.g., `pnpm install`).
-   - Start the frontend with `pnpm run dev`.
-
-3. **Data:**  
+1. **Data:**  
    - Use sample transcripts in `medi_graph/sample_data/` or `docs/` for testing.
 
 ---
