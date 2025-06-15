@@ -9,7 +9,7 @@ st.title("How this app works")
 st.markdown("""
 ## Overview
 
-**Therapy Agent** is an advanced system for analyzing medical and therapy sessions. It processes session transcripts, automatically scores mental health assessments (GAD-7, PHQ-9), and visualizes client progress over time.
+**Therapy Agent** is an advanced system for analyzing therapy sessions. It processes session transcripts, automatically scores mental health assessments (GAD-7, PHQ-9), and visualizes client progress over time.
             More about the test can be found here: [GAD-7](https://www.hiv.uw.edu/page/mental-health-screening/gad-7) and [PHQ-9](https://www.hiv.uw.edu/page/mental-health-screening/phq-9).
 
 ---
