@@ -5,3 +5,4 @@ langgraph==0.4.7
 dotenv
 langchain-together==0.3.0
 langchain-openai==0.3.18
+plotly==6.1.2
