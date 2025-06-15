@@ -4,8 +4,9 @@ from medi_graph.run_graph import run_langgraph_agent_using_sample_data
 from pathlib import Path
 import time
 
-st.set_page_config(page_title="Therapy Session Analyzer", layout="wide")
-st.title("Therapy Session Analyzer (LangGraph Agent)")
+st.set_page_config(page_title="Therapy Session Analyzer Agent",
+                   layout="wide", page_icon=":robot:")
+st.title("Therapy Session Analyzer Agent")
 
 
 if 'analyze_button' in st.session_state and st.session_state.analyze_button == True:
@@ -56,9 +57,8 @@ if analyze_button:
 else:
     if st.session_state.running:
         st.warning("Please wait, the agent is still processing the data.")
-    else:
-        st.info("Select a client and click 'Analyze Session' to start.")
-
+    elif st.session_state.last_data_source is None:
+        st.info("Please select a data source and click 'Analyze Session' to begin.")
 
 if 'output' in st.session_state:
     result = st.session_state.output

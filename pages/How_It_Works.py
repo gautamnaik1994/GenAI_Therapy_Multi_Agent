@@ -2,7 +2,8 @@ import streamlit as st
 import json
 from pathlib import Path
 
-st.set_page_config(page_title="How It Works", layout="wide")
+st.set_page_config(page_title="How It Works",
+                   layout="wide", page_icon=":robot:")
 st.title("How this app works")
 
 st.markdown("""
