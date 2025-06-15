@@ -2,7 +2,7 @@
 
 ## Overview
 
-Therapy Agent is an advanced system designed for the analysis of medical and therapy sessions. It processes session transcripts, automatically scores mental health assessments, and visualizes client progress over time. The architecture is modular, featuring a robust Python backend (API and agent logic) and a modern frontend for interactive data visualization. The app is deployed here
+Therapy Agent is an advanced system designed for the analysis of medical and therapy sessions. It processes session transcripts, automatically scores mental health assessments, and visualizes client progress over time. The architecture is modular, featuring a robust Python backend (API and agent logic) and a modern frontend for interactive data visualization. The app is deployed here : [Therapy Agent](https://therapy-agent.streamlit.app/).
 
 ## Key Features
 
@@ -78,11 +78,6 @@ Hovever, It is very important to note that that these scores should be vetted by
 
 ## Architecture
 
-- **Backend (Python):**
-  - API layer for serving data and orchestrating analysis.
-  - Modular agent-based architecture for scoring and supervision.
-  - Utilities for parsing, graph-based reasoning, and LLM integration.
-
 - **Agents:**
   - GAD-7 and PHQ-9 scoring agents for mental health assessments.
   - Supervisory agent for validation and orchestration.
@@ -90,19 +85,11 @@ Hovever, It is very important to note that that these scores should be vetted by
 
 ![Architecture Diagram](img/agents_graph.png)
 
-- **Frontend (TypeScript/React):**
-  - Visualizes client data, session trends, and assessment results.
-  - Modern UI with reusable, responsive components.
-
-- **Data:**
-  - Sample session transcripts and documentation for testing and demonstration.
-
 ---
 
 ## Deployment and Hosting
 
-- **Backend:** : [Render](https://render.com/) is used for hosting FastAPI endpoints and LangGraph agents.
-- **Frontend:** : [Netlify](https://www.netlify.com/) is used for hosting the React-based frontend.
+- **App:** : [Streamlit](https://streamlit.io/) is used for hosting the interactive UI.
 - **LLMs:** : OpenAI's GPT-4.1 api is utilized for lenguage model capabilities, with Llama 3 as a fallback for development.
 
 ## Modules
@@ -123,20 +110,9 @@ Hovever, It is very important to note that that these scores should be vetted by
 
 **Prerequisites:**
 
-- Make sure you have api keys for OpenAI or TogetherAI, and set them in the `.env` file in the `api/` directory. A template file is provided as `.env.template`.
-
--
+- Make sure you have api keys for OpenAI or TogetherAI, and set them in the `.env` file in the `root` directory. A template file is provided as `.env.template`.
 
 1. **Data:**  
    - Use sample transcripts in `medi_graph/sample_data/` or `docs/` for testing.
-
----
-
-## Screenshots
-
-![s1](img/s1.png)
-![s2](img/s2.png)
-![s3](img/s3.png)
-![s4](img/s4.png)
 
 ---
